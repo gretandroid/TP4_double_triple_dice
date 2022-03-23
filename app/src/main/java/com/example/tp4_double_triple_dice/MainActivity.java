@@ -3,6 +3,7 @@ package com.example.tp4_double_triple_dice;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -12,9 +13,9 @@ import java.util.Random;
 
     public class MainActivity extends AppCompatActivity {
 
-        ImageView imageViewDice1, imageViewDice2;
+        ImageView imageViewDice1, imageViewDice2, imageViewDice3;
         Button buttonLaunch;
-        int indexSavedDice1, indexSavedDice2;
+        int indexSavedDice1, indexSavedDice2, indexSavedDice3;
 
         // Tableau qui contient les ids des images
         private final int[] dicesArray = {
@@ -32,6 +33,11 @@ import java.util.Random;
 
             imageViewDice1 = findViewById(R.id.imageViewDe1);
             imageViewDice2 = findViewById(R.id.imageViewDe2);
+
+            if(getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE){
+                imageViewDice3 = findViewById(R.id.imageViewDe3);
+            }
+
             buttonLaunch = findViewById(R.id.buttonLaunch);
 
             if(savedInstanceState !=null) {
@@ -42,8 +48,14 @@ import java.util.Random;
 
                 imageViewDice1.setImageResource(dicesArray[indexSavedDice1]);
                 imageViewDice2.setImageResource(dicesArray[indexSavedDice2]);
+
+                if(getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
+                    indexSavedDice3 = savedInstanceState.getInt("indexSavedDice3");
+                    imageViewDice3.setImageResource(dicesArray[indexSavedDice3]);
+                }
             }
         }
+
 
         // On enregistre l'état des données
         @Override
@@ -51,6 +63,11 @@ import java.util.Random;
             super.onSaveInstanceState(outState);
             outState.putInt("indexSavedDice1",indexSavedDice1);
             outState.putInt("indexSavedDice2",indexSavedDice2);
+
+            if(getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE){
+                outState.putInt("indexSavedDice3",indexSavedDice3);
+            }
+
         }
 
         public void rollDicesOnClick(View view) {
@@ -59,6 +76,12 @@ import java.util.Random;
 
             imageViewDice1.setImageResource(dicesArray[indexSavedDice1]);
             imageViewDice2.setImageResource(dicesArray[indexSavedDice2]);
+
+            if(getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE){
+                indexSavedDice3 = generateRandomIntUpTo(dicesArray.length);
+                imageViewDice3.setImageResource(dicesArray[indexSavedDice3]);
+
+            }
         };
 
     //génération du nombre aléatoire entre zéro inclu et end exclus

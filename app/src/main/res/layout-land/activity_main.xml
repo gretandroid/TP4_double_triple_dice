@@ -38,4 +38,13 @@
         app:layout_constraintTop_toTopOf="@+id/imageViewDe1"
         app:srcCompat="@drawable/de2" />
 
+    <ImageView
+        android:id="@+id/imageViewDe3"
+        android:layout_width="126dp"
+        android:layout_height="126dp"
+        android:layout_marginStart="88dp"
+        app:layout_constraintStart_toEndOf="@+id/imageViewDe2"
+        app:layout_constraintTop_toTopOf="@+id/imageViewDe2"
+        app:srcCompat="@drawable/de3" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
